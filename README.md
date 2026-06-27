@@ -11,10 +11,11 @@ This project presents an interactive Job Market Analysis Dashboard that analyzes
 - Provide insights for aspiring data professionals.
 
 ## 🛠️ Tools & Technologies
-- HTML5
-- CSS3
-- JavaScript
+- Data Analysis
+- Data Visualization
 - Chart.js
+- HTML Dashboard
+- GitHub
 
 ## 📊 Dashboard Features
 - Total Job Openings
