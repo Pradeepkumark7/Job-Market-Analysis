@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Market Analysis Dashboard | Data Professional Roles | Pradeep Kumar</title>
+<meta name="description" content="Interactive Job Market Analysis Dashboard — 742 data professional job openings across the US. Built by Pradeep Kumar, MBA Finance Analytics.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#f0f4f8;min-height:100vh;padding:0}
+.wrap{display:flex;min-height:100vh;background:#f0f4f8}
+
+/* Sidebar */
+.sb{width:200px;min-width:200px;background:#0d1b2a;display:flex;flex-direction:column}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo-row{display:flex;align-items:center;gap:10px}
+.sb-icon{width:36px;height:36px;background:#1a6fa8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.sb-title{font-size:13px;font-weight:600;color:#fff;line-height:1.3}
+nav{padding:14px 0}
+nav a{display:flex;align-items:center;gap:10px;padding:10px 16px;color:rgba(255,255,255,0.55);font-size:13px;cursor:pointer;border-left:3px solid transparent;text-decoration:none}
+nav a.active{background:rgba(26,111,168,0.25);color:#fff;border-left:3px solid #1a6fa8}
+nav a:hover:not(.active){background:rgba(255,255,255,0.06);color:#fff}
+nav a i{font-size:17px}
+.sb-meta{padding:16px;margin-top:auto;border-top:1px solid rgba(255,255,255,0.07)}
+.sb-meta p{font-size:10px;color:rgba(255,255,255,0.35);line-height:1.6}
+
+/* Main */
+.main{flex:1;padding:22px 24px 28px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.topbar h1{font-size:22px;font-weight:700;color:#0d1b2a}
+.topbar p{font-size:12px;color:#6b8a99;margin-top:3px}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.kpi-label{font-size:10px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;margin-bottom:5px}
+.kpi-val{font-size:26px;font-weight:700;line-height:1.1}
+.kpi-sub{font-size:11px;color:#8a9bb0;margin-top:3px}
+.kpi-wave{height:26px;margin-top:8px;opacity:0.65}
+
+/* Chart cards */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.card{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.card-title{font-size:12px;font-weight:600;color:#0d1b2a;margin-bottom:12px}
+
+/* Bottom grid */
+.bottom-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}
+
+/* Industry legend */
+.legend-row{display:flex;align-items:center;gap:6px;font-size:11px;color:#4a5568;margin-bottom:4px}
+.leg-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* Skills chart hint */
+.chart-hint{font-size:11px;color:#1a6fa8;margin-top:8px;display:flex;align-items:center;gap:5px}
+
+/* Footer */
+.footer{text-align:center;padding:10px 0 0;font-size:11px;color:#8a9bb0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- Sidebar -->
+<div class="sb">
+  <div class="sb-logo">
+    <div class="sb-logo-row">
+      <div class="sb-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></div>
+      <div class="sb-title">Job Market<br>Analytics</div>
+    </div>
+  </div>
+  <nav>
+    <a class="active"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Overview</a>
+    <a><i class="ti ti-map-pin" aria-hidden="true"></i> By State</a>
+    <a><i class="ti ti-users" aria-hidden="true"></i> Job Roles</a>
+    <a><i class="ti ti-building" aria-hidden="true"></i> Industries</a>
+    <a><i class="ti ti-school" aria-hidden="true"></i> Education</a>
+    <a><i class="ti ti-tool" aria-hidden="true"></i> Skills</a>
+  </nav>
+  <div class="sb-meta">
+    <p>Data: US Job Market<br>Roles: Data Professionals<br>MBA Finance Analytics<br>Pradeep Kumar</p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+  <div class="topbar">
+    <h1>JOB MARKET ANALYSIS DASHBOARD</h1>
+    <p>Data professional roles across the United States — salary, skills, and industry breakdown</p>
+  </div>
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Total Openings</div>
+      <div class="kpi-val" style="color:#1a6fa8">742</div>
+      <div class="kpi-sub">Across all US states</div>
+      <svg class="kpi-wave" viewBox="0 0 100 26" preserveAspectRatio="none"><polyline points="0,20 20,14 40,18 60,8 80,14 100,10" fill="none" stroke="#1a6fa8" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Avg Salary</div>
+      <div class="kpi-val" style="color:#1baf7a">$101.5K</div>
+      <div class="kpi-sub">Annual, all roles</div>
+      <svg class="kpi-wave" viewBox="0 0 100 26" preserveAspectRatio="none"><polyline points="0,16 25,10 50,18 75,8 100,12" fill="none" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Top Role</div>
+      <div class="kpi-val" style="color:#4a3aa7;font-size:18px;margin-top:5px">Data Scientist</div>
+      <div class="kpi-sub">313 openings (42.2%)</div>
+      <svg class="kpi-wave" viewBox="0 0 100 26" preserveAspectRatio="none"><polyline points="0,14 30,8 60,16 80,6 100,12" fill="none" stroke="#4a3aa7" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Top State</div>
+      <div class="kpi-val" style="color:#eda100;font-size:18px;margin-top:5px">California</div>
+      <div class="kpi-sub">Highest job count</div>
+      <svg class="kpi-wave" viewBox="0 0 100 26" preserveAspectRatio="none"><polyline points="0,20 20,12 50,16 70,8 100,14" fill="none" stroke="#eda100" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+
+  <!-- Charts Row 1 -->
+  <div class="charts-grid">
+    <div class="card">
+      <div class="card-title">Top Job Roles by Openings</div>
+      <div style="position:relative;height:190px">
+        <canvas id="rolesChart" role="img" aria-label="Horizontal bar chart of top job roles. Data Scientist leads with 313 openings.">Data Scientist 313, Other Scientist 143, Data Engineer 119, Analyst 101, ML Engineer 22.</canvas>
+      </div>
+      <div class="chart-hint"><i class="ti ti-trending-up" style="font-size:13px" aria-hidden="true"></i> Data Scientist dominates with 42% of all openings</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Jobs by State (Top 8)</div>
+      <div style="position:relative;height:190px">
+        <canvas id="stateChart" role="img" aria-label="Horizontal bar chart of jobs by state. California leads.">CA, MA, NY, VA, IL, MD, PA, TX.</canvas>
+      </div>
+      <div class="chart-hint"><i class="ti ti-map-pin" style="font-size:13px" aria-hidden="true"></i> CA, MA, NY are top 3 hiring states</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Top Industries Hiring Data Professionals</div>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:4px">
+        <div style="position:relative;width:120px;height:120px;flex-shrink:0">
+          <canvas id="industryChart" role="img" aria-label="Doughnut chart of top industries. Biotech leads at 15.09%.">Biotech 15%, IT Services 8.5%, Insurance 7.95%.</canvas>
+        </div>
+        <div>
+          <div class="legend-row"><span class="leg-sq" style="background:#1a6fa8"></span>Biotech &amp; Pharma 15.1%</div>
+          <div class="legend-row"><span class="leg-sq" style="background:#1baf7a"></span>IT Services 8.5%</div>
+          <div class="legend-row"><span class="leg-sq" style="background:#eda100"></span>Insurance 7.95%</div>
+          <div class="legend-row"><span class="leg-sq" style="background:#4a3aa7"></span>Computer HW 6.74%</div>
+          <div class="legend-row"><span class="leg-sq" style="background:#e34948"></span>Healthcare 6.6%</div>
+          <div class="legend-row"><span class="leg-sq" style="background:#c3c2b7"></span>Others 55.1%</div>
+        </div>
+      </div>
+      <div class="chart-hint"><i class="ti ti-building" style="font-size:13px" aria-hidden="true"></i> Biotech &amp; Pharma is the top hiring industry</div>
+    </div>
+  </div>
+
+  <!-- Charts Row 2 -->
+  <div class="bottom-grid">
+    <div class="card">
+      <div class="card-title">Skills Required Across Job Roles</div>
+      <div style="position:relative;height:170px">
+        <canvas id="skillsChart" role="img" aria-label="Stacked bar chart of skills across data roles. Python dominates in Data Scientist and Data Engineer roles.">Python, SQL, Excel, AWS, Spark, Tableau.</canvas>
+      </div>
+      <div class="chart-hint"><i class="ti ti-code" style="font-size:13px" aria-hidden="true"></i> Python is the most in-demand skill</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Avg Salary by Job Role ($K)</div>
+      <div style="position:relative;height:170px">
+        <canvas id="salaryChart" role="img" aria-label="Bar chart of average salary by role. Data Scientist highest at ~$37K segment average.">Data Scientist ~37K, Other Scientist ~12K, Data Engineer ~11K, Analyst ~10K.</canvas>
+      </div>
+      <div class="chart-hint"><i class="ti ti-currency-dollar" style="font-size:13px" aria-hidden="true"></i> Data Scientists earn the highest</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Education Level vs Avg Salary</div>
+      <div style="position:relative;height:130px">
+        <canvas id="eduChart" role="img" aria-label="Bar chart of education vs salary. Not specified leads at ~34K, Masters ~26K, PhD ~10K.">NA ~34K, Masters ~26K, PhD ~10K.</canvas>
+      </div>
+      <div style="margin-top:10px">
+        <div class="legend-row"><span class="leg-sq" style="background:#1a6fa8"></span>Not specified (~34K)</div>
+        <div class="legend-row"><span class="leg-sq" style="background:#1baf7a"></span>Masters (~26K)</div>
+        <div class="legend-row"><span class="leg-sq" style="background:#eda100"></span>PhD (~10K)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Built by Pradeep Kumar | MBA Finance Analytics | Vikrama Simhapuri University | Job Market Analysis Project</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const grid='#e8edf2';
+const muted='#8a9bb0';
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{bodyFont:{size:11},titleFont:{size:11}}}};
+
+// Roles chart
+new Chart(document.getElementById('rolesChart'),{
+  type:'bar',
+  data:{
+    labels:['Data Scientist','Other Scientist','Data Engineer','Analyst','ML Engineer'],
+    datasets:[{
+      data:[313,143,119,101,22],
+      backgroundColor:['#1a6fa8','#1baf7a','#4a3aa7','#eda100','#e34948'],
+      borderRadius:4,borderSkipped:false
+    }]
+  },
+  options:{...base,indexAxis:'y',scales:{
+    x:{grid:{color:grid},ticks:{color:muted,font:{size:10}}},
+    y:{grid:{display:false},ticks:{color:muted,font:{size:10}}}
+  }}
+});
+
+// State chart
+new Chart(document.getElementById('stateChart'),{
+  type:'bar',
+  data:{
+    labels:['CA','MA','NY','VA','IL','MD','PA','TX'],
+    datasets:[{
+      data:[200,160,130,110,95,85,75,70],
+      backgroundColor:'#1a6fa8',borderRadius:4,borderSkipped:false
+    }]
+  },
+  options:{...base,indexAxis:'y',scales:{
+    x:{grid:{color:grid},ticks:{color:muted,font:{size:10}}},
+    y:{grid:{display:false},ticks:{color:muted,font:{size:10}}}
+  }}
+});
+
+// Industry doughnut
+new Chart(document.getElementById('industryChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Biotech','IT Services','Insurance','Comp HW','Healthcare','Others'],
+    datasets:[{
+      data:[15.09,8.49,7.95,6.74,6.6,55.13],
+      backgroundColor:['#1a6fa8','#1baf7a','#eda100','#4a3aa7','#e34948','#c3c2b7'],
+      borderWidth:2,borderColor:'#fff'
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}
+});
+
+// Skills stacked bar
+new Chart(document.getElementById('skillsChart'),{
+  type:'bar',
+  data:{
+    labels:['Data Scientist','Data Engineer','Sr Data Scientist','Data Analyst'],
+    datasets:[
+      {label:'Python',data:[380,160,60,30],backgroundColor:'#1a6fa8',borderRadius:0},
+      {label:'SQL',data:[120,90,40,50],backgroundColor:'#1baf7a',borderRadius:0},
+      {label:'Excel',data:[80,40,20,60],backgroundColor:'#eda100',borderRadius:0},
+      {label:'AWS',data:[60,80,30,10],backgroundColor:'#4a3aa7',borderRadius:0},
+      {label:'Spark',data:[40,70,20,5],backgroundColor:'#e34948',borderRadius:[0,0,4,4]},
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:true,position:'bottom',labels:{font:{size:9},color:muted,boxWidth:9,padding:8}}
+    },
+    scales:{
+      x:{stacked:true,grid:{display:false},ticks:{color:muted,font:{size:9},maxRotation:20}},
+      y:{stacked:true,grid:{color:grid},ticks:{color:muted,font:{size:10}}}
+    }
+  }
+});
+
+// Salary by role
+new Chart(document.getElementById('salaryChart'),{
+  type:'bar',
+  data:{
+    labels:['Data Scientist','Other Scientist','Data Engineer','Analyst','ML Eng'],
+    datasets:[{
+      data:[37,12,11,10,5],
+      backgroundColor:['#1a6fa8','#4a3aa7','#1baf7a','#eda100','#e34948'],
+      borderRadius:4,borderSkipped:false
+    }]
+  },
+  options:{...base,scales:{
+    x:{grid:{display:false},ticks:{color:muted,font:{size:9},maxRotation:30}},
+    y:{grid:{color:grid},ticks:{color:muted,font:{size:10},callback:v=>v+'K'}}
+  }}
+});
+
+// Education vs salary
+new Chart(document.getElementById('eduChart'),{
+  type:'bar',
+  data:{
+    labels:['Not specified','Masters','PhD'],
+    datasets:[{
+      data:[34,26,10],
+      backgroundColor:['#1a6fa8','#1baf7a','#eda100'],
+      borderRadius:4,borderSkipped:false
+    }]
+  },
+  options:{...base,scales:{
+    x:{grid:{display:false},ticks:{color:muted,font:{size:10}}},
+    y:{grid:{color:grid},ticks:{color:muted,font:{size:10},callback:v=>v+'K'}}
+  }}
+});
+</script>
+</body>
+</html>
